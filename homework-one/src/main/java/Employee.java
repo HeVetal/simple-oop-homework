@@ -16,4 +16,8 @@ public class Employee extends Person {
         this.position = position;
         this.baseSalary = baseSalary;
     }
+
+//    public void display() {
+//        System.out.println(this);
+//    }
 }

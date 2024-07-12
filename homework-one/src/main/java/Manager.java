@@ -2,9 +2,6 @@ import lombok.*;
 
 @Getter
 @Setter
-//@AllArgsConstructor
-//@Builder
-//@RequiredArgsConstructor
 public class Manager extends Employee{
     private int grade;
 
@@ -13,11 +10,14 @@ public class Manager extends Employee{
         this.grade = grade;
     }
 
-    public void display(){
-        System.out.println(grade);
+    double calculateSalary(){
+        return getBaseSalary() * grade;
     }
 
-//    double calculateSalary(){
-//        return getBaseSalary() * grade;
-//    }
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "grade=" + grade +
+                "} " + super.toString();
+    }
 }

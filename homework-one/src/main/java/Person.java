@@ -18,7 +18,16 @@ public class Person {
         System.out.println(this);
     }
 
+//    public String toString() {
+//        return "Person(name=" + this.getName() + ", age=" + this.getAge() + ", married=" + this.isMarried() + ")";
+//    }
+
+    @Override
     public String toString() {
-        return "Person(name=" + this.getName() + ", age=" + this.getAge() + ", married=" + this.isMarried() + ")";
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", married=" + married +
+                '}';
     }
 }
