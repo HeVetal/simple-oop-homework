@@ -1,3 +1,6 @@
+package dto;
+
+import dto.Person;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +20,4 @@ public class Employee extends Person {
         this.baseSalary = baseSalary;
     }
 
-//    public void display() {
-//        System.out.println(this);
-//    }
 }

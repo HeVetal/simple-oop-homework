@@ -1,10 +1,10 @@
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+package dto;
+
+import lombok.*;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 
 public class SaleManager extends Employee {
     private double totalSales;
@@ -20,11 +20,4 @@ public class SaleManager extends Employee {
         return getBaseSalary() + bonus;
     }
 
-    @Override
-    public String toString() {
-        return "SaleManager{" +
-                "totalSales=" + totalSales +
-                ", bonus=" + bonus +
-                "} " + super.toString();
-    }
 }

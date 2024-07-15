@@ -1,8 +1,11 @@
+package dto;
+
 import lombok.*;
 
 @Getter
 @Setter
-public class Manager extends Employee{
+@ToString(callSuper = true)
+public class Manager extends Employee {
     private int grade;
 
     public Manager(String name, int age, boolean married, String company, String position, double baseSalary, int grade) {
@@ -14,10 +17,4 @@ public class Manager extends Employee{
         return getBaseSalary() * grade;
     }
 
-    @Override
-    public String toString() {
-        return "Manager{" +
-                "grade=" + grade +
-                "} " + super.toString();
-    }
 }

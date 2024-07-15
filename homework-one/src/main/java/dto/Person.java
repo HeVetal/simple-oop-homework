@@ -1,8 +1,12 @@
+package dto;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString()
 public class Person {
     private String name;
     private int age;
@@ -18,16 +22,5 @@ public class Person {
         System.out.println(this);
     }
 
-//    public String toString() {
-//        return "Person(name=" + this.getName() + ", age=" + this.getAge() + ", married=" + this.isMarried() + ")";
-//    }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", married=" + married +
-                '}';
-    }
 }
