@@ -1,8 +1,14 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
-        printStringReverse("Vasa");
-        System.out.println(isPhoneNumber("79112905382"));
-        printSubStringReverse("Hello world!", 1, 11);
+//        printStringReverse("Vasa");
+//        System.out.println(isPhoneNumber("79112905382"));
+//        printSubStringReverse("Hello world!", 1, 11);
+        printWordsReverseInColumn("Для проверки содержания определённого элемента в ArrayList, применяйте метод contains()");
     }
 
     public static void printStringReverse(String string) {
@@ -36,5 +42,32 @@ public class Main {
         String reversPart = string.substring(start, finish + 1);
         StringBuilder builder = new StringBuilder(reversPart);
         System.out.println(string.replace(reversPart, builder.reverse()));
+    }
+
+    public static void printWordsReverseInColumn(String string) {
+        String[] s = string.split(" ");
+        for (String s1 : s) {
+            System.out.println(new StringBuilder(s1).reverse());
+        }
+    }
+
+    public static int maxCharIndex(String string) {
+        int maxChar = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        char[] charArray = string.toCharArray();
+        for (char c : charArray) {
+            if(map.containsKey(c)){
+                map.put(c, map.get(c) + 1);
+            }
+            else {
+                map.put(c,1);
+            }
+        }
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if(entry.getValue() > maxChar){
+                maxChar = entry.getValue();
+            }
+        }
+        return string.indexOf(map.get());
     }
 }

@@ -13,7 +13,7 @@ public class Manager extends Employee {
         this.grade = grade;
     }
 
-    double calculateSalary(){
+    public double calculateSalary(){
         return getBaseSalary() * grade;
     }
 
