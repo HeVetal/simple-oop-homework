@@ -11,39 +11,42 @@ import java.util.Objects;
 
 public class PersonApp {
     public void employeeInfo(Employee[] employees) {
-        if(employees == null){
+        if (employees == null) {
             return;
         }
         Arrays.stream(employees).filter(Objects::nonNull).forEach(Person::display);
     }
 
-    public double allEmployeeSalary(@NonNull List<Person> list){
+    public double allEmployeeSalary(Employee[] employees) {
+        if (employees == null) {
+            System.out.println("Null");
+            return 0;
+        }
         double allSalary = 0;
-        for (Person person : list) {
-            if(person instanceof Manager){
-               allSalary += ((Manager) person).calculateSalary();
-            } else if (person instanceof SaleManager) {
-                allSalary += ((SaleManager) person).calculateSalary();
-            } else if (person instanceof WageEmployee) {
-                allSalary += ((WageEmployee) person).calculateSalary();
+        for (Employee employee : employees) {
+            if (employee instanceof Manager) {
+                allSalary += ((Manager) employee).calculateSalary();
+            } else if (employee instanceof SaleManager) {
+                allSalary += ((SaleManager) employee).calculateSalary();
+            } else if (employee instanceof WageEmployee) {
+                allSalary += ((WageEmployee) employee).calculateSalary();
             }
         }
         return allSalary;
     }
 
-    public double incomeCompany(@NonNull List<Person> list){
+    public double incomeCompany(Employee[] employees) {
         double income = 0;
-        for (Person person : list) {
-            if(person instanceof SaleManager){
-                income += ((SaleManager) person).getTotalSales();
+        for (Employee employee : employees) {
+            if (employee instanceof SaleManager) {
+                income += ((SaleManager) employee).getTotalSales();
             }
         }
-    return income;
+        return income;
     }
 
-    public boolean searchEmployee(List<Person> list, Person person){
-
-        return list.contains(person);
+    public boolean searchEmployee(Employee[] employees, Person person) {
+        return Arrays.asList(employees).contains(person);
     }
 
 }
