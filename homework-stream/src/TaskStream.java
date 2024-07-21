@@ -54,7 +54,7 @@ public class TaskStream {
      * @return список отзывов
      */
     public static List<String> task5(List<Book> books) {
-        return Collections.emptyList();
+        return books.stream().flatMap(t -> t.getReviews().stream()).collect(Collectors.toList());
     }
 
     /**
@@ -64,7 +64,7 @@ public class TaskStream {
      * @return среднюю стоимость книги
      */
     public static double task6(List<Book> books) {
-        return 0.;
+        return books.stream().mapToDouble(Book::getPrice).average().getAsDouble();
     }
 
     /**
@@ -74,7 +74,8 @@ public class TaskStream {
      * @return результат
      */
     public static boolean task7(List<Book> books) {
-        return false;
+
+        return books.stream().map(Book::getAuthor).anyMatch(author -> author.contains("Автор"));
     }
 
     /**
@@ -84,7 +85,8 @@ public class TaskStream {
      * @return не больше 3 названий книг
      */
     public static Set<String> task8(List<Book> books) {
-        return Collections.emptySet();
+
+        return books.stream().map(Book::getTitle).collect(Collectors.toSet());
     }
 
     /**
@@ -94,7 +96,9 @@ public class TaskStream {
      * @return
      */
     public static List<Book> task9(List<Book> books) {
-        return Collections.emptyList();
+
+        //return books.stream().filter(book -> book.getPrice() < 100).filter(book -> book.getTitle());
+        return new ArrayList<>();
     }
 
     /**
@@ -104,7 +108,8 @@ public class TaskStream {
      * @return Map с двумя ключами
      */
     public static Map<String, List<Book>> task10(List<Book> books) {
-        return Collections.emptyMap();
+        //return books.stream().collect(Collectors.toMap(book -> if(book.)));
+        return new HashMap<>();
     }
 
     /**
@@ -114,7 +119,8 @@ public class TaskStream {
      * @return список книг с интересными отзывами
      */
     public static List<Book> task11(List<Book> books) {
-        return Collections.emptyList();
+        //return books.stream().flatMap(t-> t.getReviews().stream()).collect(Collectors.toList());
+        return books.stream().peek(book -> book.getReviews().stream().filter(re-> re.contains("рекомендую"))).collect(Collectors.toList());
     }
 
     /**
@@ -124,6 +130,6 @@ public class TaskStream {
      * @return самая дешевая книга
      */
     public static Book task12(List<Book> books) throws IllegalArgumentException {
-        return null;
+        return books.stream().min(Comparator.comparing(Book::getPrice)).orElseThrow();
     }
 }
