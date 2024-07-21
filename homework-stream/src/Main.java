@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.*;
 
 public class Main {
@@ -19,6 +21,7 @@ public class Main {
         books.add(book2);
         books.add(book3);
         books.add(book4);
+        System.out.println(book3.getReviews());
 
 
         //Тесты и вызов методов с заданием

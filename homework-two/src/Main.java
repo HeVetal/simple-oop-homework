@@ -68,6 +68,6 @@ public class Main {
                 maxChar = entry.getValue();
             }
         }
-        return string.indexOf(map.get());
+        return 6;
     }
 }

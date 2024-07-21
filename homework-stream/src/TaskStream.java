@@ -43,7 +43,8 @@ public class TaskStream {
      * @return ожидаемый мап
      */
     public static Map<String, List<String>> task4(List<Book> books) {
-        return Collections.emptyMap();
+        return books.stream().filter(book ->
+                !book.getReviews().equals(new ArrayList<>())).collect(Collectors.toMap(Book::getTitle, Book::getReviews));
     }
 
     /**
