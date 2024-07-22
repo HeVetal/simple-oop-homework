@@ -110,6 +110,8 @@ public class TaskStream {
     public static Map<String, List<Book>> task10(List<Book> books) {
         //return books.stream().collect(Collectors.toMap(book -> if(book.)));
         return new HashMap<>();
+        //return books.stream().collect(Collectors.groupingBy(el -> "ok"> 50))
+        //return books.stream().collect(Collectors.partitioningBy(book -> book.getPrice() > 50));
     }
 
     /**
@@ -120,7 +122,9 @@ public class TaskStream {
      */
     public static List<Book> task11(List<Book> books) {
         //return books.stream().flatMap(t-> t.getReviews().stream()).collect(Collectors.toList());
-        return books.stream().filter(book -> book.getReviews().stream().filter(rev -> rev.contains("рекомендую")).isParallel()).collect(Collectors.toList());
+        //return books.stream().filter(book -> book.getReviews().stream().filter(rev -> rev.contains("рекомендую")).isParallel()).collect(Collectors.toList());
+        //return books.stream().flatMap(book -> book.getReviews().stream()).filter(rev -> rev.contains("рекомендую")).collect(Collectors.toList());
+        return new ArrayList<>();
     }
 
     /**
