@@ -68,8 +68,8 @@ public class Main {
         Assertion.assertEquals(true, titles.containsAll(Arrays.asList("Книга 1", "Книга 2", "Книга 3")));
 
         //Задание 9
-//        List<Book> booksActual = TaskStream.task9(books);
-//        Assertion.assertEquals(Collections.singletonList(book2), booksActual);
+        List<Book> booksActual = TaskStream.task9(books);
+        Assertion.assertEquals(Collections.singletonList(book2), booksActual);
 //
 //        //Задание 10
 //        Map<String, List<Book>> oks = TaskStream.task10(books);

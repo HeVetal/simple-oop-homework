@@ -97,8 +97,8 @@ public class TaskStream {
      */
     public static List<Book> task9(List<Book> books) {
 
-        //return books.stream().filter(book -> book.getPrice() < 100).filter(book -> book.getTitle());
-        return new ArrayList<>();
+        return books.stream().filter(book -> book.getPrice() < 100).filter(book -> book.getTitle().matches(".*[02468]$")).collect(Collectors.toList());
+        //return new ArrayList<>();
     }
 
     /**
@@ -120,7 +120,7 @@ public class TaskStream {
      */
     public static List<Book> task11(List<Book> books) {
         //return books.stream().flatMap(t-> t.getReviews().stream()).collect(Collectors.toList());
-        return books.stream().peek(book -> book.getReviews().stream().filter(re-> re.contains("рекомендую"))).collect(Collectors.toList());
+        return books.stream().filter(book -> book.getReviews().stream().filter(rev -> rev.contains("рекомендую")).isParallel()).collect(Collectors.toList());
     }
 
     /**
