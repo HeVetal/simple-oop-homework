@@ -13,7 +13,8 @@ public class Manager extends Employee {
         this.grade = grade;
     }
 
-    public double calculateSalary(){
+    @Override
+    public double calculateSalary() {
         return getBaseSalary() * grade;
     }
 

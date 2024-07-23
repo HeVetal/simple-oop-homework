@@ -16,6 +16,7 @@ public class SaleManager extends Employee {
         this.bonus = bonus;
     }
 
+    @Override
     public double calculateSalary(){
         return getBaseSalary() + bonus;
     }

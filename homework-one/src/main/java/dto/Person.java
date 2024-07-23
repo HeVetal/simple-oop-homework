@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString()
-public class Person {
+public abstract class Person {
     private String name;
     private int age;
     private boolean married;
@@ -21,6 +21,4 @@ public class Person {
     public void display() {
         System.out.println(this);
     }
-
-
 }
