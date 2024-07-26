@@ -1,14 +1,15 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
 //        printStringReverse("Vasa");
 //        System.out.println(isPhoneNumber("79112905382"));
 //        printSubStringReverse("Hello world!", 1, 11);
-        printWordsReverseInColumn("Для проверки содержания определённого элемента в ArrayList, применяйте метод contains()");
+//        printWordsReverseInColumn("Для проверки содержания определённого элемента в ArrayList, применяйте метод contains()");
+//        System.out.println(maxCharIndex("ddcccabbbb"));
+        //System.out.println(getWordsReverse("Hello my nice world"));
+        printWordsReverseInColumn("Hello my nice world");
     }
 
     public static void printStringReverse(String string) {
@@ -35,39 +36,44 @@ public class Main {
             System.out.println("Wrong args");
             return;
         }
-//        String firstPart = string.substring(0, start);
-//        String reversPart = string.substring(start, finish + 1);
-//        String thirdPart = string.substring(finish + 1);
-//        System.out.println(firstPart + new StringBuilder(reversPart).reverse() + thirdPart);
+
         String reversPart = string.substring(start, finish + 1);
         StringBuilder builder = new StringBuilder(reversPart);
         System.out.println(string.replace(reversPart, builder.reverse()));
     }
 
-    public static void printWordsReverseInColumn(String string) {
-        String[] s = string.split(" ");
-        for (String s1 : s) {
-            System.out.println(new StringBuilder(s1).reverse());
+    public static String getWordsReverse(String string) {
+        if (Objects.isNull(string) || string.isBlank()) {
+            return null;
         }
+        return String.join(" ", Arrays.asList(string.split(" ")).reversed());
+    }
+
+    public static void printWordsReverseInColumn(String string) {
+        if (Objects.isNull(string) || string.isBlank()) {
+            return;
+        }
+        String collect = Arrays.stream(string.split(" "))
+                .map(StringBuilder::new)
+                .map(StringBuilder::reverse)
+                .collect(Collectors.joining("\n"));
+        System.out.println(collect);
+
     }
 
     public static int maxCharIndex(String string) {
-        int maxChar = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        char[] charArray = string.toCharArray();
-        for (char c : charArray) {
-            if(map.containsKey(c)){
-                map.put(c, map.get(c) + 1);
-            }
-            else {
-                map.put(c,1);
-            }
+        if (Objects.isNull(string) || string.isBlank()) {
+            return -1;
         }
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if(entry.getValue() > maxChar){
-                maxChar = entry.getValue();
-            }
-        }
-        return 6;
+
+        Map<String, Integer> map = new HashMap<>();
+        string.chars()
+                .mapToObj(Character::toString)
+                .forEach(str -> map.merge(str, 1, Integer::sum));
+        return string.indexOf(map.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(map.values().stream()
+                        .max(Comparator.naturalOrder())
+                        .orElseThrow()))
+                .findFirst().orElseThrow().getKey());
     }
 }
