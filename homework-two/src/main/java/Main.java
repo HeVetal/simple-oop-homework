@@ -65,11 +65,14 @@ public class Main {
         if (Objects.isNull(string) || string.isBlank()) {
             return -1;
         }
+//
+//        Map<String, Integer> map = new HashMap<>();
+//        string.chars()
+//                .mapToObj(Character::toString)
+//                .forEach(str -> map.merge(str, 1, Integer::sum));
+        Map<String, Long> map = Arrays.stream(string.split(""))
+                .collect(Collectors.groupingBy(str -> str, Collectors.counting()));
 
-        Map<String, Integer> map = new HashMap<>();
-        string.chars()
-                .mapToObj(Character::toString)
-                .forEach(str -> map.merge(str, 1, Integer::sum));
         return string.indexOf(map.entrySet().stream()
                 .filter(entry -> entry.getValue().equals(map.values().stream()
                         .max(Comparator.naturalOrder())
